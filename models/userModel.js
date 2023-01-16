@@ -51,8 +51,8 @@ const userSchema = new Schema({
 userSchema.set('toJSON', {
     virtuals: true,
     versionKey: false,
-    transform: function (doc, ret) {
-        delete ret._id;
+    transform: function (doc, res) {
+        delete res._id;
     }
 });
 
@@ -61,7 +61,7 @@ userSchema.methods = {
         return bcrypt.compareSync( password, this.password);
     },
     generateToken: function() {
-        return jwt.sign({ userid: this.userid }, process.env.JWT_SECRET, { expiresIn: '86400s' })
+        return jwt.sign({ userid: this.userid }, process.env.JWT_SECRET, { expiresIn: '86400s' }) // 1 day
     }
 }
 
