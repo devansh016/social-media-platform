@@ -1,11 +1,11 @@
-# social-media-platform
+# Social-Media-Platform
 
 ## Running Locally
 Make sure you have [Node.js](http://nodejs.org/) installed.
 Also create the .env file and add environment variables as mentioned below.
 
 ```sh
-git clone git@github.com:devansh016/Minimal-News.git
+git clone git@github.com:devansh016/social-media-platform.git
 npm install
 npm start
 ```
