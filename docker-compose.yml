@@ -1,17 +1,27 @@
-version: '3'
+version: '3.7'
+
 services:
   node:
-    restart: always
-    build: .
+    container_name: social-media-platform
+    image: social-media-platform
+    build:
+      context: .
+      dockerfile: dockerfile
     ports:
-      - 80:80
-    volumes:
-      - ./:/code
-  mongo:
+      - "80:80"
+    networks:
+      - social-media-platform-network
+    environment:
+      - NODE_ENV=production
+    depends_on: 
+      - mongodb
+      
+  mongodb:
+    container_name: mongodb
     image: mongo
-    ports:
-      - 27017:27017
-    volumes:
-      - mongodb:/data/db
-volumes:
- mongodb:
+    networks:
+      - social-media-platform-network
+
+networks:
+  social-media-platform-network:
+    driver: bridge
