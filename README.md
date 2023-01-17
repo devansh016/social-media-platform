@@ -25,3 +25,5 @@ Your app should now be running on [localhost](http://localhost/) at port 80.
 ```sh
 npm run test
 ```
+
+![alt text](https://i.postimg.cc/6QFyGywz/test-screenshot.png)
