@@ -30,3 +30,5 @@ database.once("open", function () {
 app.listen(port, function(){
     console.log("App is running at port " + port);
 });
+
+module.exports = app;

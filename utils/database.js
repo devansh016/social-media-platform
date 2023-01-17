@@ -7,7 +7,10 @@ const connectionOptions = {
 }
 
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.MONGODB_URL, connectionOptions)
+if (process.env.NODE_ENV == 'test' )
+    mongoose.connect(process.env.MONGODB_URL_TEST, connectionOptions)
+else
+    mongoose.connect(process.env.MONGODB_URL, connectionOptions)
 mongoose.Promise = global.Promise
 
 const connection = mongoose.connection;

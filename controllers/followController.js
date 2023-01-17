@@ -29,17 +29,17 @@ async function follow ({ target_userid, user }) {
     
 };
 
-async function unfollow ({ target_userid, userid }) {
+async function unfollow ({ target_userid, user }) {
     try {
-        if(userid == target_userid){
+        if(user.userid == target_userid){
             return { "status": 403, "message": "You can't unfollow yourself." };
         }
         const targetuser = await User.findOne({ "userid": target_userid});
-        const user = await User.findOne({ userid });
+        user = await User.findOne({ "userid": user.userid });
         if(targetuser) {
             if(user.followings.includes(target_userid)){
                 // Adding user to target user followers
-                targetuser.followers.pop(userid);
+                targetuser.followers.pop(user.userid);
                 await targetuser.save();
                 // Adding following to user profile
                 user.followings.pop(target_userid);
@@ -53,7 +53,7 @@ async function unfollow ({ target_userid, userid }) {
         } 
     } catch (error) {
         console.log(error)
-        return { "status": 500, "message": "Internal Server Error." };
+        return { "status": 500, "message": "Internal Server Error."};
     }
     
 };
